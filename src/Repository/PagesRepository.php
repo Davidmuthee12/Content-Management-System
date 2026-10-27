@@ -15,7 +15,12 @@ class PagesRepository {
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, PageModel::class);
         $entry = $stmt->fetch();
-        return $entry;
+        if (!empty($entry)){
+            return $entry;
+        }
+        else {
+            return null;
+        }
         // var_dump($entry);
     }
 }
