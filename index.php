@@ -5,7 +5,13 @@ require __DIR__ . '/inc/all.inc.php';
 $page = @(string) ($_GET['page'] ?? 'index');
 
 if ($page === 'index') {
-    $pagesController = new \App\Frontend\Controller\PagesController();
+    $pagesRepository = new \App\Repository\PagesRepository($pdo);
+    $pagesRepository->fetchBySlug('index');
+
+
+    $pagesController = new \App\Frontend\Controller\PagesController(
+        $pagesRepository
+    );
     $pagesController->showPage('index');
 }
 else {
