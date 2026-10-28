@@ -28,6 +28,5 @@ class PagesRepository {
         else {
             return null;
         }
-        // var_dump($entry);
     }
 }

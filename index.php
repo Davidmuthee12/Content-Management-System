@@ -27,7 +27,8 @@ $container->bind('notFoundController', function() use($container) {
 });
 
 $container->bind('pagesAdminController', function() use($container) {
-    return new \App\Admin\Controller\PagesAdminController();
+    $pagesRepository = $container->get('pagesRepository');
+    return new \App\Admin\Controller\PagesAdminController($pagesRepository);
 });
 
 $route = @(string) ($_GET['route'] ?? 'pages');
