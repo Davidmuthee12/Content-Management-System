@@ -33,4 +33,22 @@ class PagesRepository {
             return null;
         }
     }
+
+    public function getSlugExists(string $slug): bool {
+        $stmt = $this->pdo->prepare('SELECT COUNT(*) AS `count` FROM `pages` WHERE `slug` = :slug');
+        $stmt->bindValue(':slug', $slug);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return ($result['count'] >= 1);
+    }
+
+    public function create(string $title, string $slug, string $content) {
+        $stmt = $this->pdo->prepare('INSERT INTO `pages` (`title`, `slug`, `content`)
+            VALUES(:title, :slug, :content)
+        ');
+        $stmt->bindValue(':title', $title);
+        $stmt->bindValue(':slug', $slug);
+        $stmt->bindValue(':content', $content);
+        $stmt->execute();
+    }
 }

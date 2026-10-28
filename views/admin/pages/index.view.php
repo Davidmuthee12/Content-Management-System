@@ -16,3 +16,5 @@
         <?php endforeach; ?>
     </tbody>
 </table>
+
+<a href="index.php?route=admin/pages/create">Create Page</a>
