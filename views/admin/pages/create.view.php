@@ -25,8 +25,7 @@
 
     <label for="content">Content:</label>
     <textarea name="content" id="content"><?php
-     if (!empty($_POST['content'])) echo e($_POST['content']); ?>
+    if (!empty($_POST['content'])) echo e($_POST['content']); ?>
     </textarea>
-
     <input type="submit" value="Submit" />
 </form>
