@@ -26,6 +26,10 @@ $container->bind('notFoundController', function() use($container) {
     );
 });
 
+$container->bind('pagesAdminController', function() use($container) {
+    return new \App\Admin\Controller\PagesAdminController();
+});
+
 $route = @(string) ($_GET['route'] ?? 'pages');
 
 
@@ -35,6 +39,10 @@ if ($route === 'pages') {
 
     $pagesController = $container->get('pagesController');
     $pagesController->showPage($page);
+}
+else if ($route === 'admin/pages') {
+    $pagesAdminController = $container->get('pagesAdminController');
+    $pagesAdminController->index();
 }
 else {
 
