@@ -1,5 +1,13 @@
 <h1>Create new Form</h1>
 
+<?php if (!empty($errors)): ?>
+    <ul>
+        <?php foreach($errors AS $error): ?>
+            <li><?php echo e($error); ?></li>
+        <?php endforeach ?>
+    </ul>
+<?php endif; ?>
+
 <form method="POST" action="index.php?route=admin/pages/create">
     <label for="title">Title:</label>
     <input type="text"
