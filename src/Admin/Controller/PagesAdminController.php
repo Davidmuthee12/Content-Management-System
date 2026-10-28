@@ -46,4 +46,12 @@ class PagesAdminController extends AbstractAdminController {
             'errors' => $errors
         ]);
     }
+
+    public function delete() {
+        $id = @(int) ($_POST['id'] ?? 0);
+        if (!empty($id)) {
+            $this->pagesRepository->delete($id);
+        }
+        header("Location: index.php?route=admin/pages");
+    }
 }
