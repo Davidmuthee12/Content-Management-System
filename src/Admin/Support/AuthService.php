@@ -12,7 +12,7 @@ class AuthService {
         if (empty($username)) return false;
         if (empty($password)) return false;
 
-        $stmt = $this->pdo->prepare('SELECT `password` FROM `users` WHERE `username` = :username');
+        $stmt = $this->pdo->prepare('SELECT  `id`, `password` FROM `users` WHERE `username` = :username');
         $stmt->bindValue(':username', $username);
         $stmt->execute();
         $entry = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -22,6 +22,10 @@ class AuthService {
         if (empty($passwordOK)) {
             return false;
         }
+
+        session_start();
+        $_SESSION['adminUserId'] = $entry['id'];
+        
         return true;
     }
 }
