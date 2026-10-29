@@ -31,6 +31,10 @@ $container->bind('pagesAdminController', function() use($container) {
     return new \App\Admin\Controller\PagesAdminController($pagesRepository);
 });
 
+$container->bind('loginController', function() {
+    return new \App\Admin\Controller\LoginController();
+});
+
 $route = @(string) ($_GET['route'] ?? 'pages');
 
 
@@ -40,6 +44,10 @@ if ($route === 'pages') {
 
     $pagesController = $container->get('pagesController');
     $pagesController->showPage($page);
+}
+else if ($route === 'admin/login') {
+    $loginController = $container->get('loginController');
+    $loginController->login();
 }
 else if ($route === 'admin/pages') {
     $pagesAdminController = $container->get('pagesAdminController');
