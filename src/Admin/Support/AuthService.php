@@ -25,7 +25,20 @@ class AuthService {
 
         session_start();
         $_SESSION['adminUserId'] = $entry['id'];
-        
+
         return true;
+    }
+
+    public function isLoggedIn(): bool {
+        session_start();
+        return !empty($_SESSION['adminUserId']);
+    }
+
+    public function ensureLoggedIn() {
+        $isLoggedIn = $this->isLoggedIn();
+        if (empty($isLoggedIn)) {
+            header('Location: index.php?' . http_build_query(['route' => 'admin/login']));
+            die();
+        }
     }
 }

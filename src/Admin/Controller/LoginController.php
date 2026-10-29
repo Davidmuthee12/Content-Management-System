@@ -9,6 +9,10 @@ class LoginController extends AbstractAdminController {
     public function __construct(private AuthService $authService) {}
 
     public function login() {
+        if ($this->authService->isLoggedIn()) {
+            header('Location: index.php?' . http_build_query(['route' => 'admin/pages']));
+            return;
+        }
 
         $loginError = false;
         if (!empty($_POST)) {
