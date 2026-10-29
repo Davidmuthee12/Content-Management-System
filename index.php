@@ -47,6 +47,21 @@ $container->bind('loginController', function() use($container){
     );
 });
 
+$container->bind('csrfHelper', function() {
+    return new \App\Support\CSRFHelper();
+});
+
+$csrfHelper = $container->get('csrfHelper');
+$csrfHelper->handle();
+
+// var_dump($csrfHelper->generateToken());
+function csrf_token() {
+    global $container;
+    $csrfHelper = $container->get('csrfHelper');
+    return $csrfHelper->generateToken();
+}
+
+
 $route = @(string) ($_GET['route'] ?? 'pages');
 
 

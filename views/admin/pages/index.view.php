@@ -16,6 +16,7 @@
                 <td>
                     <a href="index.php?<?php echo http_build_query(['route' => 'admin/pages/edit', 'id' => $page->id]); ?>">Edit</a>
                     <form style="display: inline" method="POST" action="index.php?<?php echo http_build_query(['route' => 'admin/pages/delete']); ?>">
+                        <input type="hidden" name="_csrf" value="<?php echo e(csrf_token()); ?>">
                         <input type="hidden" name="id" value="<?php echo e($page->id); ?>">
                         <input type="submit" value="Delete!">
                     </form>
