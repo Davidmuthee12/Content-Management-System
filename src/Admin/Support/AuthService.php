@@ -14,6 +14,12 @@ class AuthService {
         }
     }
 
+    public function logout() {
+        $this->ensureSession();
+        unset($_SESSION['adminUserId']);
+        session_regenerate_id();
+    }
+
     public function handleLogin(string $username, string $password): bool {
         if (empty($username)) return false;
         if (empty($password)) return false;

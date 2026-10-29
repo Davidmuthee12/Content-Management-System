@@ -14,7 +14,9 @@
         </h1>
         <p>Welcome to the Admin Page: Admin</p>
         <nav>
-            
+            <?php if (!empty($isLoggedIn)): ?>
+                <a href="index.php?<?php echo http_build_query(['route' => 'admin/logout']); ?>">Logout</a>
+            <?php endif; ?>
         </nav>
     </header>
     <main>
